@@ -1,0 +1,5 @@
+@EndUserText.label: 'Singleton Service Definiton'
+define service ZSGR_SD_SINGLETON {
+  expose ZSGR_C_SINGLETON      as Singleton;
+  expose ZSGR_C_SINGLETON_DATA as Data;
+}

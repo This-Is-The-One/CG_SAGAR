@@ -1,0 +1,4 @@
+@EndUserText.label: 'Serverice Definition for DEMO TABLE'
+define service Z_SD_RAP_PREVIEW {
+  expose Z_I_RAP_DEMO_TABLE_01;
+}

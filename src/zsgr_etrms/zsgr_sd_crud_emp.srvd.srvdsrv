@@ -1,0 +1,4 @@
+@EndUserText.label: 'CRUD op on EMP Table'
+define service ZSGR_SD_CRUD_EMP {
+  expose ZSGR_C_EMP_CRUD;
+}

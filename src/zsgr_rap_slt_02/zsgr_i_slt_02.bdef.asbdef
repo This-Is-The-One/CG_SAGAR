@@ -1,0 +1,57 @@
+managed implementation in class zbp_sgr_i_slt_02 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZSGR_I_SLT_02 //alias <alias_name>
+//persistent table <???>
+with unmanaged save
+draft table ZSGR_I_SLT_02_DT
+
+lock master
+total etag LastChangedAt_SLT
+authorization master ( instance )
+etag master LastChangedAt_SLT
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) singleton_id, LastChangedAt_SLT;
+  association _Data { create; with draft;}
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+}
+
+
+
+
+
+
+
+
+
+define behavior for ZSGR_I_SLT_DATA_02 //alias <alias_name>
+persistent table zsgr_stl_demo_02
+draft table ZSGR_SLT_DATA_DT
+lock dependent by _Slt
+authorization dependent by _Slt
+etag master LastChangedAt
+{
+  update;
+  delete;
+  field ( readonly ) ConfigId, AppId, LastChangedAt, LocalLastChanged, CreatedAt;
+//  field ( readonly : update) LastChangedAt;
+  association _Slt;
+  mapping for zsgr_stl_demo_02{
+    ConfigId = config_id;
+    AppId = app_id;
+    AppName = app_name;
+    AppDesc = app_desc;
+    Active = active;
+    CreatedAt = created_at;
+    LastChangedAt = last_changed_at;
+    LocalLastChanged = local_last_changed;
+  }
+}

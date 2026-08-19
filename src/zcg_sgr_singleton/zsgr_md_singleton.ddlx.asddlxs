@@ -1,0 +1,26 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName      : 'Singleton',
+    typeNamePlural : 'Singleton',
+    title : {
+      type : #STANDARD
+    }
+}
+
+annotate entity ZSGR_C_SINGLETON
+with
+{
+   @UI.lineItem: [{ position: 10 }]
+   @UI.identification: [{ position: 10 }]
+    Singleton;
+
+    @UI.facet: [{
+        id            : 'DataFacet',
+        purpose       : #STANDARD,
+        type          : #LINEITEM_REFERENCE,
+        targetElement : '_data',
+        label         : 'Data',
+        position      : 10
+    }]
+    _data;
+}

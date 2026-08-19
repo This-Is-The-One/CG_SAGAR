@@ -1,0 +1,80 @@
+@Metadata.layer: #CORE
+
+annotate entity ZSGR_C_SINGLETON_DATA
+with
+{
+
+  @UI.facet: [
+    {
+      id: 'ProjectDetails',
+      type: #LINEITEM_REFERENCE,
+      label: 'Project Details',
+      position: 10
+    }
+  ]
+
+  @UI.lineItem: [
+    { position: 10, label: 'Project ID' }
+  ]
+  @UI.identification: [
+    { position: 10 }
+  ]
+  ProjectId;
+
+  @UI.lineItem: [
+    { position: 20, label: 'Project Name' }
+  ]
+  @UI.identification: [
+    { position: 20 }
+  ]
+  ProjectName;
+
+  @UI.lineItem: [
+    { position: 40, label: 'Project Type' }
+  ]
+  @UI.identification: [
+    { position: 40 }
+  ]
+  ProjectType;
+
+  @UI.lineItem: [
+    { position: 70, label: 'Start Date' }
+  ]
+  @UI.identification: [
+    { position: 70 }
+  ]
+  StartDate;
+
+  @UI.lineItem: [
+    { position: 80, label: 'End Date' }
+  ]
+  @UI.identification: [
+    { position: 80 }
+  ]
+  EndDate;
+
+  @UI.lineItem: [
+    { position: 120, label: 'Created By' }
+  ]
+  @UI.identification: [
+    { position: 120 }
+  ]
+  CreatedBy;
+
+  @UI.lineItem: [
+    { position: 130, label: 'Created At' }
+  ]
+  @UI.identification: [
+    { position: 130 }
+  ]
+  CreatedAt;
+
+  @UI.lineItem: [
+    { position: 140, label: 'Active' }
+  ]
+  @UI.identification: [
+    { position: 140 }
+  ]
+  IsActive;
+
+}

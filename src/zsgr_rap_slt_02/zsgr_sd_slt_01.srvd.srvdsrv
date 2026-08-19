@@ -1,0 +1,5 @@
+@EndUserText.label: 'Serverice Definition for Singleton'
+define service ZSGR_SD_SLT_01 {
+  expose ZSGR_C_SLT_02;
+  expose ZSGR_C_SLT_DATA_02;
+}

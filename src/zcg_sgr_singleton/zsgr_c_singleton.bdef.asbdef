@@ -1,0 +1,19 @@
+projection;
+strict ( 2 );
+
+define behavior for ZSGR_C_SINGLETON //alias <alias_name>
+{
+//  use create;
+  use update;
+  use delete;
+
+  use association _data { create; }
+}
+
+define behavior for ZSGR_C_SINGLETON_DATA //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Singleton;
+}
