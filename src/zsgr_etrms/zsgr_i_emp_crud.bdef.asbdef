@@ -19,13 +19,13 @@ early numbering
   field ( readonly ) EmpId, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy;
   draft action Edit;
   draft action Activate optimized;
+  static action ( authorization : global ) getData;
   draft action Discard;
   draft action Resume;
   draft determine action Prepare
   {
     validation validateEmail;
   }
-////  static action getData;
   mapping for zsgr_emp_t01
     {
       Doj            = doj;

@@ -10,8 +10,12 @@ CLASS lhc_ZSGR_I_EMP_CRUD DEFINITION INHERITING FROM cl_abap_behavior_handler.
     METHODS earlynumbering_create FOR NUMBERING
        entities FOR CREATE zsgr_i_emp_crud.
 
+
     METHODS validateEmail FOR VALIDATE ON SAVE
        keys FOR zsgr_i_emp_crud~validateEmail.
+
+    METHODS getData FOR MODIFY
+       keys FOR ACTION zsgr_i_emp_crud~getData.
 
 ENDCLASS.
 
@@ -22,7 +26,6 @@ CLASS lhc_ZSGR_I_EMP_CRUD IMPLEMENTATION.
 
   METHOD get_global_authorizations.
   ENDMETHOD.
-
 
   METHOD validateEmail.
     DATA(lc_email_regex) = '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' .
@@ -52,8 +55,6 @@ CLASS lhc_ZSGR_I_EMP_CRUD IMPLEMENTATION.
     ENDLOOP.
 
   ENDMETHOD.
-
-
 
 
 * This is not the standard way. On line 43 I have used the standard way.
@@ -88,8 +89,6 @@ CLASS lhc_ZSGR_I_EMP_CRUD IMPLEMENTATION.
 
     ENDLOOP.
   ENDMETHOD.
-
-
 
 
 *  METHOD earlynumbering_create.
@@ -145,6 +144,35 @@ CLASS lhc_ZSGR_I_EMP_CRUD IMPLEMENTATION.
 
 
 
+  METHOD getData.
+    DATA(lo_getdata) = NEW zsgr_cl_custom_01(  ).
+    lo_getdata->gen_and_get_data(
+      IMPORTING
+        ct_table = DATA(lt_data)
+    ).
 
+    SORT lt_data BY emp_id.
+    DELETE ADJACENT DUPLICATES FROM lt_data COMPARING emp_id.
+
+    MODIFY ENTITIES OF zsgr_i_emp_crud IN LOCAL MODE
+    ENTITY zsgr_i_emp_crud
+    CREATE FROM VALUE #(
+        FOR ls_data IN lt_data (
+            %cid = | { ls_data-emp_id }{ ls_data-first_name }|
+            empid = ls_data-emp_id
+            firstname = ls_data-first_name
+            lastname = ls_data-last_name
+            emailid = ls_data-email_id
+        )
+    )
+    MAPPED mapped
+    FAILED failed
+    REPORTED reported.
+
+    data(map) = mapped.
+    data(fail) = failed.
+    data(report) = reported.
+
+  ENDMETHOD.
 
 ENDCLASS.

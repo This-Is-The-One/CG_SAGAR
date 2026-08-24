@@ -42,9 +42,17 @@ CLASS ZCG_SGR_DATADUMP IMPLEMENTATION.
 *    out->write( 'Record deleted successfully' ).
 
 
-        UPDATE zsgr_emp_t01
-        SET emp_id = '1000000001'.
+*        UPDATE zsgr_emp_t01
+*        SET emp_id = '1000000001'.
 
+     data(lo_temp) = new zsgr_cl_custom_01( ).
+     lo_temp->gen_and_get_data(
+       IMPORTING
+         ct_table = data(lt_table)
+     ).
+     LOOP AT lt_table INTO DATA(wa_table).
+        Out->write( | { wa_table-client } { wa_table-emp_id } { wa_table-first_name } { wa_table-last_name } { wa_table-email_id } | ).
+     ENDLOOP.
 
      out->write( 'success' ).
 

@@ -15,8 +15,15 @@ define root view entity ZSGR_C_EMP_CRUD
              position: 10
          }
       ]
-      @UI.lineItem: [{ position: 10 }]
-      @UI.identification: [{ position: 10 }]
+      
+      @UI.lineItem: [{ position: 10 },
+                     { 
+                       type: #FOR_ACTION,
+                       dataAction: 'getData',
+                       label: 'Get Data',
+                       position: 10
+                     }]
+      @UI.identification: [{ position: 10}]
       @EndUserText.label: 'EMP ID'
   key EmpId,
       @UI.lineItem: [{ position: 20 }]
@@ -61,6 +68,6 @@ define root view entity ZSGR_C_EMP_CRUD
       Doj
       //    CreatedBy,
       //    CreatedAt,
-      //    LastChangedBy,
+      //    LastChangedBy,  
       //    LastChangedAt
 }
