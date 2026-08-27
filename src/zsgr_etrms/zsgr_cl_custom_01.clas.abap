@@ -11,6 +11,7 @@ ENDCLASS.
 
 
 
+
 CLASS zsgr_cl_custom_01 IMPLEMENTATION.
     METHOD gen_and_get_data.
         DATA: lt_firstname TYPE STANDARD TABLE OF zsgr_emp_t01-first_name,
@@ -38,7 +39,7 @@ CLASS zsgr_cl_custom_01 IMPLEMENTATION.
                 cl_number = DATA(lv_empid)
         ).
 
-        DO 1 TIMES.
+        DO 10 TIMES.
         ranidx1 = cl_abap_random_int=>create( seed = cl_abap_random=>seed( )
                                               min = 1
                                               max = lines( lt_firstname ) )->get_next(  ).
@@ -54,7 +55,7 @@ CLASS zsgr_cl_custom_01 IMPLEMENTATION.
                         emp_id = lv_empid
                         first_name = lt_firstname[ ranidx1 ]
                         last_name = lt_lastname[ ranidx2 ]
-                        email_id = | { lt_firstname[ ranidx1 ] }{ ranemail }@capg.com |
+                        email_id = |{ lt_firstname[ ranidx1 ] }{ ranemail }@capg.com|
                       ) TO ct_table.
 
         ENDDO.

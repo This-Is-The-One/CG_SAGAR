@@ -51,7 +51,6 @@ CLASS lhc_ZSGR_I_EMP_CRUD IMPLEMENTATION.
                         )
                       ) TO reported-zsgr_i_emp_crud.
       ENDIF.
-
     ENDLOOP.
 
   ENDMETHOD.
@@ -85,8 +84,6 @@ CLASS lhc_ZSGR_I_EMP_CRUD IMPLEMENTATION.
                      ) TO mapped-zsgr_i_emp_crud.
 
       ENDIF.
-
-
     ENDLOOP.
   ENDMETHOD.
 
@@ -144,35 +141,35 @@ CLASS lhc_ZSGR_I_EMP_CRUD IMPLEMENTATION.
 
 
 
+
   METHOD getData.
     DATA(lo_getdata) = NEW zsgr_cl_custom_01(  ).
     lo_getdata->gen_and_get_data(
       IMPORTING
         ct_table = DATA(lt_data)
     ).
-
-    SORT lt_data BY emp_id.
-    DELETE ADJACENT DUPLICATES FROM lt_data COMPARING emp_id.
-
-    MODIFY ENTITIES OF zsgr_i_emp_crud IN LOCAL MODE
-    ENTITY zsgr_i_emp_crud
-    CREATE FROM VALUE #(
-        FOR ls_data IN lt_data (
-            %cid = | { ls_data-emp_id }{ ls_data-first_name }|
-            empid = ls_data-emp_id
-            firstname = ls_data-first_name
-            lastname = ls_data-last_name
-            emailid = ls_data-email_id
-        )
-    )
-    MAPPED mapped
-    FAILED failed
-    REPORTED reported.
-
-    data(map) = mapped.
-    data(fail) = failed.
-    data(report) = reported.
-
+    LOOP AT lt_data INTO DATA(ls_data).
+      MODIFY ENTITIES OF zsgr_i_emp_crud IN LOCAL MODE
+      ENTITY zsgr_i_emp_crud
+      CREATE FROM VALUE #(
+          FOR <instance> IN keys
+                 ( %cid = <instance>-%cid
+                   EmpId = ls_data-emp_id
+                   FirstName = ls_data-first_name
+                   LastName = ls_data-last_name
+                   EmailId = ls_data-email_id
+                   %control  =
+                   VALUE #(
+                        EmpId = if_abap_behv=>mk-on
+                        FirstName = if_abap_behv=>mk-on
+                        LastName = if_abap_behv=>mk-on
+                        EmailId = if_abap_behv=>mk-on
+                     )
+                 )
+      )
+      MAPPED mapped
+      FAILED failed.
+    ENDLOOP.
   ENDMETHOD.
 
 ENDCLASS.
