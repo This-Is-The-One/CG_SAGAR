@@ -16,6 +16,8 @@ CLASS lhc_ZSGR_I_EMP_CRUD DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS getData FOR MODIFY
        keys FOR ACTION zsgr_i_emp_crud~getData.
+    METHODS deleteData FOR MODIFY
+      keys FOR ACTION ZSGR_I_EMP_CRUD~deleteData.
 
 ENDCLASS.
 
@@ -26,6 +28,9 @@ CLASS lhc_ZSGR_I_EMP_CRUD IMPLEMENTATION.
 
   METHOD get_global_authorizations.
   ENDMETHOD.
+
+
+
 
   METHOD validateEmail.
     DATA(lc_email_regex) = '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' .
@@ -54,6 +59,8 @@ CLASS lhc_ZSGR_I_EMP_CRUD IMPLEMENTATION.
     ENDLOOP.
 
   ENDMETHOD.
+
+
 
 
 * This is not the standard way. On line 43 I have used the standard way.
@@ -86,6 +93,8 @@ CLASS lhc_ZSGR_I_EMP_CRUD IMPLEMENTATION.
       ENDIF.
     ENDLOOP.
   ENDMETHOD.
+
+
 
 
 *  METHOD earlynumbering_create.
@@ -170,6 +179,17 @@ CLASS lhc_ZSGR_I_EMP_CRUD IMPLEMENTATION.
       MAPPED mapped
       FAILED failed.
     ENDLOOP.
+  ENDMETHOD.
+
+
+
+
+  METHOD deleteData.
+
+*    MODIFY ENTITIES OF zsgr_i_emp_crud
+*    ENTITY zsgr_i_emp_crud
+*    DELETE FROM
+    .
   ENDMETHOD.
 
 ENDCLASS.

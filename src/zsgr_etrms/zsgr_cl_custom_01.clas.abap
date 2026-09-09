@@ -1,12 +1,17 @@
 CLASS zsgr_cl_custom_01 DEFINITION
   PUBLIC
   FINAL
-  CREATE PUBLIC .
+  CREATE PUBLIC.
 
   PUBLIC SECTION.
     METHODS gen_and_get_data
      EXPORTING
       ct_table TYPE ZSGR_TT_EMP_01.
+
+    METHODS delete_data
+     CHANGING
+      ct_del_list TYPE zsgr_tt_emp_key_01.
+
 ENDCLASS.
 
 
@@ -60,4 +65,15 @@ CLASS zsgr_cl_custom_01 IMPLEMENTATION.
 
         ENDDO.
     ENDMETHOD.
+
+
+
+
+    METHOD delete_data.
+*        SELECT emp_id FROM zsgr_emp_t01
+*        WHERE emp_id > '1000000003'
+*        INTO CORRESPONDING FIELDS OF TABLE @ct_del_list.
+    ENDMETHOD.
+
 ENDCLASS.
+

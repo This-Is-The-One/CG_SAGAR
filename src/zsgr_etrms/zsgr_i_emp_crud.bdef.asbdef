@@ -9,17 +9,16 @@ lock master total etag LastChangedAt
 authorization master ( instance )
 etag master LastChangedAt
 early numbering
-
 {
   validation validateEmail on save { create; field EmailId; }
   create ( authorization : global );
-
   update;
   delete;
   field ( readonly ) EmpId, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy;
   draft action Edit;
   draft action Activate optimized;
   static factory action ( authorization : global ) getData [1];
+  static factory action ( authorization : global ) deleteData [1];
   draft action Discard;
   draft action Resume;
   draft determine action Prepare
