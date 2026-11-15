@@ -1,4 +1,6 @@
 CLASS zbp_sgr_i_singleton DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zsgr_i_singleton.
+protected section.
+private section.
 ENDCLASS.
 
 

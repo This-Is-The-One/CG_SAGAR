@@ -8,6 +8,8 @@ CLASS zsgr_cl_num_gen DEFINITION
      EXPORTING
       cl_number TYPE zsgr_numc_10_de.
 
+protected section.
+private section.
 ENDCLASS.
 
 

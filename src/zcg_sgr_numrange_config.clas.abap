@@ -14,7 +14,9 @@ ENDCLASS.
 
 
 
-CLASS zcg_sgr_numrange_config IMPLEMENTATION.
+CLASS ZCG_SGR_NUMRANGE_CONFIG IMPLEMENTATION.
+
+
   METHOD configure_numrngobj.
     TRY.
         cl_numberrange_intervals=>create(
@@ -37,8 +39,8 @@ CLASS zcg_sgr_numrange_config IMPLEMENTATION.
     io_out->write( ld_warning ).
   ENDMETHOD.
 
+
   METHOD if_oo_adt_classrun~main.
     configure_numrngobj( out ).
   ENDMETHOD.
-
 ENDCLASS.

@@ -1,0 +1,49 @@
+managed implementation in class zbp_i_trv_req_01 unique;
+strict ( 2 );
+with draft;
+
+define behavior for Z_I_TRV_REQ_01 alias TravelRequest
+draft table ztb_trrq_dt
+persistent table ztb_trv_req_01
+lock master total etag LastChangedAt
+authorization master ( instance )
+etag master LocalLastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly, numbering : managed ) TravelUuid;
+  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, LocalLastChangedAt, CurrencyCode, Status, ManagerComment, ApprovedAmount, TravelDays;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare{
+    determination setStatusSubmitted;
+  }
+
+  mapping for ztb_trv_req_01{
+    TravelUuid = travel_uuid;
+    EmployeeId = employee_id;
+    Destination = destination;
+    StartDate = start_date;
+    EndDate = end_date;
+    TravelPurpose = travel_purpose;
+    TransportType = transport_type;
+    EstimatedAmount = estimated_amount;
+    ApprovedAmount = approved_amount;
+    CurrencyCode = currency_code;
+    Status = status;
+    ManagerComment = manager_comment;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+
+  determination setDefaultCurrency on modify { create; }
+  determination setStatusDraft on modify { create; }
+  determination setStatusSubmitted on save { create; }
+}

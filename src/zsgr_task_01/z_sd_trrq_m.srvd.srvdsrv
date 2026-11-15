@@ -1,0 +1,4 @@
+@EndUserText.label: 'SD for Travel Request with Managed'
+define service Z_sd_trrq_m {
+  expose Z_C_TRV_REQ_01_M;
+}

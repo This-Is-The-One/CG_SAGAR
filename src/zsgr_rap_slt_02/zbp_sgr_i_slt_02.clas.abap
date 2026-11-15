@@ -1,4 +1,6 @@
 CLASS zbp_sgr_i_slt_02 DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zsgr_i_slt_02.
+protected section.
+private section.
 ENDCLASS.
 
 

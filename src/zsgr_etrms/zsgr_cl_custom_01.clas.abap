@@ -12,12 +12,15 @@ CLASS zsgr_cl_custom_01 DEFINITION
      CHANGING
       ct_del_list TYPE zsgr_tt_emp_key_01.
 
+protected section.
+private section.
 ENDCLASS.
 
 
 
+CLASS ZSGR_CL_CUSTOM_01 IMPLEMENTATION.
 
-CLASS zsgr_cl_custom_01 IMPLEMENTATION.
+
     METHOD gen_and_get_data.
         DATA: lt_firstname TYPE STANDARD TABLE OF zsgr_emp_t01-first_name,
               lt_lastname TYPE STANDARD TABLE OF zsgr_emp_t01-last_name,
@@ -67,13 +70,9 @@ CLASS zsgr_cl_custom_01 IMPLEMENTATION.
     ENDMETHOD.
 
 
-
-
     METHOD delete_data.
 *        SELECT emp_id FROM zsgr_emp_t01
 *        WHERE emp_id > '1000000003'
 *        INTO CORRESPONDING FIELDS OF TABLE @ct_del_list.
     ENDMETHOD.
-
 ENDCLASS.
-

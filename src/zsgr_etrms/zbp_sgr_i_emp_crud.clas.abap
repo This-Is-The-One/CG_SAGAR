@@ -1,5 +1,9 @@
 CLASS zbp_sgr_i_emp_crud DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zsgr_i_emp_crud.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zbp_sgr_i_emp_crud IMPLEMENTATION.
+
+
+CLASS ZBP_SGR_I_EMP_CRUD IMPLEMENTATION.
 ENDCLASS.
