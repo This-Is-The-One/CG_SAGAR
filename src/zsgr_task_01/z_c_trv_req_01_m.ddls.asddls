@@ -29,8 +29,8 @@ define root view entity Z_C_TRV_REQ_01_M
       @UI.lineItem: [{ position: 10, label: 'Travel ID' }]
       @UI.identification: [{ position: 10, label: 'Travel ID'}]
   key TravelUuid,
-      @UI.lineItem: [{ position: 110, label: 'Status' }]
-      @UI.identification: [{ position: 11, label: 'Status'}]
+      @UI.lineItem: [{ position: 110, label: 'Status' }, {type: #FOR_ACTION, dataAction: 'reviewRequest', label: 'Review Request'}]
+      @UI.identification: [{ position: 11, label: 'Status'}, { type: #FOR_ACTION, dataAction: 'reviewRequest', label: 'Review Request' }]
       Status,
       @UI.lineItem: [{ position: 20, label: 'EMP ID' }]
       @UI.identification: [{ position: 20, label: 'EMP ID'}]

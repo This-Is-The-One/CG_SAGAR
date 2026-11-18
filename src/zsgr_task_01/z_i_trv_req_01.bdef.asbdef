@@ -13,7 +13,7 @@ etag master LocalLastChangedAt
   update;
   delete;
   field ( readonly, numbering : managed ) TravelUuid;
-  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, LocalLastChangedAt, CurrencyCode, Status, ManagerComment, ApprovedAmount, TravelDays;
+  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, LocalLastChangedAt, Status, ManagerComment, ApprovedAmount, TravelDays;
 
   draft action Activate optimized;
   draft action Discard;
@@ -46,4 +46,9 @@ etag master LocalLastChangedAt
   determination setDefaultCurrency on modify { create; }
   determination setStatusDraft on modify { create; }
   determination setStatusSubmitted on save { create; }
+  action reviewRequest parameter Z_A_REV_REQ_01 result [1] $self;
+
+  side effects {
+    action reviewRequest affects field Status, field ApprovedAmount, field ManagerComment;
+  }
 }

@@ -6,13 +6,9 @@
 "Z_I_EMPLOYEE_01"
 ],
 "ASSOCIATED":
-[
-"Z_I_TRV_REQ_01"
-],
+[],
 "BASE":
-[
-"Z_I_EMPLOYEE_01"
-],
+[],
 "ANNO_REF":
 [],
 "SCALAR_FUNCTION":

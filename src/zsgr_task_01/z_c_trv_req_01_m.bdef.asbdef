@@ -13,4 +13,6 @@ define behavior for Z_C_TRV_REQ_01_M //alias <alias_name>
   use action Edit;
   use action Resume;
   use action Prepare;
+
+  use action reviewRequest;
 }
